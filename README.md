@@ -1,2 +1,3 @@
 # CTYunPCKeepAlive
-可能是最易用的天翼云电脑自动续命工具
+
+请查阅 [Release](/mzl980425/CTYunPCKeepAlive/releases)
