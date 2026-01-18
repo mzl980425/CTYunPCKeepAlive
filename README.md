@@ -9,14 +9,16 @@
 
 ## 下载地址
 
-[Release](https://github.com/mzl980425/CTYunPCKeepAlive/releases)
+[Release](https://github.com/mzl980425/CTYunPCKeepAlive/releases/latest)
+
+请下载以 `v` 开头的版本 Release 文件！
 
 ## Release 说明
 
 ### 版本号规则
 
-- 以 `v` 开头的版本号是应用版本，稳定后一般无需手动更新
-- 以 `@` 开头的日期版本号是续命脚本，每次页面刷新后会执行热更新
+- 以 `v` 开头的版本号是应用版本，安装或更新都需要手动下载并安装
+- 以 `@` 开头的日期版本号是续命脚本，每次页面刷新后会自动执行更新，无需手动操作
 
 ### 产物文件
 
