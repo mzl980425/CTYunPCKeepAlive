@@ -1,0 +1,23 @@
+{
+  "name": "CTYunPCKeepAliveElectron",
+  "version": "2.0.0",
+  "description": "天翼云电脑续命工具",
+  "main": "./out/main/index.js",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.node.json",
+    "start": "electron-vite preview --ignoreConfigWarning",
+    "dev": "electron-vite dev --ignoreConfigWarning",
+    "build": "npm run typecheck && electron-vite build --ignoreConfigWarning",
+    "build:unpack": "npm run build && electron-builder --dir",
+    "build:win": "npm run build && electron-builder --win"
+  },
+  "devDependencies": {
+    "@electron-toolkit/tsconfig": "^2.0.0",
+    "@types/node": "^26.1.0",
+    "electron": "^43.0.0",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^5.0.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.2"
+  }
+}
