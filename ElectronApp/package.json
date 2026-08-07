@@ -7,6 +7,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.node.json",
     "start": "electron-vite preview --ignoreConfigWarning",
     "dev": "electron-vite dev --ignoreConfigWarning",
+    "postinstall": "node node_modules/electron/install.js",
     "build": "npm run typecheck && electron-vite build --ignoreConfigWarning",
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win"
