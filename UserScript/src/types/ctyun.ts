@@ -66,7 +66,7 @@ interface ICTYun {
 declare global {
   interface Window {
     forceMission3?: boolean;
-    CTYunPCKeepAliveElectronVersion: string;
+    CTYunPCKeepAliveAppVersion: string;
     ctct: { identify: Function; init: Function; track: Function };
     __APP__: {
       clink: ICTYun;
