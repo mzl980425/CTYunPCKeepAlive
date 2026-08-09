@@ -19,6 +19,9 @@
 
 > 只做保活，不做远控。连接仅在内存中短暂建立（默认约 8 秒），不会长期占用你的云电脑。
 
+<img width="245" alt="截图1" src="https://github.com/user-attachments/assets/71f5a054-fce8-4c2f-a3b1-06792b9b3b60" />
+<img width="245" alt="截图2" src="https://github.com/user-attachments/assets/61985799-5704-4ac4-a743-5aa7c3811b5d" />
+
 ## 安装
 
 ### 方式一：用户脚本（浏览器）
@@ -33,6 +36,25 @@
 ### 方式二：Windows 桌面客户端（Electron）
 
 从 [GitHub Releases](https://github.com/4x25/CTYunPCKeepAlive/releases) 下载对应版本安装包或便携版，双击运行即可。客户端同样保持最新用户脚本逻辑。
+
+> 国内访问 GitHub 较慢时，可通过代理加速站下载，例如：
+> <https://github.404.vin> · <https://gh.llkk.cc> · <https://gh-proxy.net> · <https://edgeone.gh-proxy.org> · <https://cdn.gh-proxy.org> · <https://hk.gh-proxy.org> · <https://gh-proxy.org>
+
+## Release 说明
+
+### 版本命名规则
+
+- **`vX.Y.Z`**：正式应用版本，需手动下载并安装。
+- **`@YYYY.MM.DD`**：续命脚本快照，每次刷新页面时自动更新，**无需手动操作**。
+
+### 发布产物类型
+
+| 文件后缀 | 类型说明 | 推荐场景 |
+| --- | --- | --- |
+| `-setup.exe` | 安装包版本 | 首次安装或长期使用 |
+| `-portable.exe` | 单文件便携版 | 临时使用或免安装需求 |
+
+> 💡 如无特殊需求，**建议使用 `-setup.exe` 后缀的安装包版本**。
 
 ## 开发与构建
 
@@ -66,6 +88,10 @@ CTYunPCKeepAlive/
 ├── ElectronApp/    # Electron 桌面壳（主进程 + preload 注入）
 └── LICENSE
 ```
+
+## 问题反馈
+
+如有问题或建议，欢迎在 [Issues](https://github.com/4x25/CTYunPCKeepAlive/issues) 中提交。
 
 ## 免责声明
 
