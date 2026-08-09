@@ -1,0 +1,102 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "Release tag (e.g. v1.3.0)"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  # ── Job 1: 构建用户脚本并发布到 dist 分支 ───────────────────────────
+  # dist 分支同时服务两个地址：
+  #   - GitHub Pages 安装地址 https://4x25.github.io/CTYunPCKeepAlive/user-script.user.js
+  #   - Electron preload 的 raw 地址（https://github.com/4x25/CTYunPCKeepAlive/raw/refs/heads/dist/user-script.user.js，经代理加速）
+  userscript:
+    name: Build & publish UserScript
+    runs-on: ubuntu-latest
+    outputs:
+      script_version: ${{ steps.version.outputs.script_version }}
+      tag: ${{ steps.meta.outputs.tag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Resolve version & tag
+        id: version
+        run: |
+          echo "script_version=$(node -p "require('./UserScript/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Resolve tag
+        id: meta
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            echo "tag=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=${{ github.event.inputs.tag_name }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install dependencies
+        working-directory: UserScript
+        run: npm install
+
+      - name: Build
+        working-directory: UserScript
+        run: npm run build
+
+      - name: Publish to dist branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B dist origin/dist
+          cp UserScript/dist/user-script.user.js user-script.user.js
+          git add user-script.user.js
+          if git diff --cached --quiet; then
+            echo "user-script.user.js 无变化，跳过提交"
+          else
+            git commit -m "chore: publish user-script v${{ steps.version.outputs.script_version }}"
+            git push origin dist
+          fi
+
+  # ── Job 2: 构建 Electron Windows x64 并上传 Release ────────────────
+  electron:
+    name: Build Electron & upload Release
+    needs: userscript
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        working-directory: ElectronApp
+        run: npm install
+
+      - name: Build installer & portable (x64)
+        working-directory: ElectronApp
+        run: npm run build:win -- --x64
+
+      - name: Upload assets to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.userscript.outputs.tag }}
+          files: |
+            ElectronApp/dist/*.exe
+          fail_on_unmatched_files: true
