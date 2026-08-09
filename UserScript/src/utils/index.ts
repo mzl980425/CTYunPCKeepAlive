@@ -23,28 +23,6 @@ export function hookWindow(win = window) {
     writable: false,
     configurable: false,
   });
-  // win.Object.defineProperty(win, "WebAssembly", {
-  //   value: undefined,
-  //   writable: false,
-  //   configurable: false,
-  // });
-  // win.Object.defineProperty(win.navigator, "serviceWorker", {
-  //   value: undefined,
-  //   writable: false,
-  //   configurable: false,
-  // });
-  // win.Object.defineProperty(win, "Worker", {
-  //   value: undefined,
-  //   writable: false,
-  //   configurable: false,
-  // });
-  // win.Object.defineProperty(win, "SharedWorker", {
-  //   value: undefined,
-  //   writable: false,
-  //   configurable: false,
-  // });
-  // win.postMessage = function () {};
-  // win.CanvasRenderingContext2D.prototype.putImageData = function () {};
   win.ctct = win.ctct || {};
   Object.assign(win.ctct, {
     identify: () => {},

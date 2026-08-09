@@ -20,7 +20,6 @@ const LoginDrawer: FC<ILoginDrawerProps> = ({ open, onClose, onLogin }) => {
       setIframeKey(Math.random());
       setIframeUrl(event.data.payload.returnUrl);
     }
-    console.log("event.data >>> ", event.data);
   });
 
   const checkLogin = (silent = false) => {

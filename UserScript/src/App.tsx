@@ -2,7 +2,6 @@ import { FC } from "react";
 import { useEventListener, useUpdate } from "ahooks";
 import AntLayout from "./layouts/AntLayout";
 import AppLayout from "./layouts/AppLayout";
-import AuthLayout from "./layouts/AuthLayout";
 import ExternalLayout from "./layouts/ExternalLayout";
 import Login from "./pages/Login";
 import DesktopList from "./pages/DesktopList";
@@ -15,17 +14,15 @@ const App: FC<{}> = () => {
 
   return (
     <AntLayout>
-      <AuthLayout>
-        <ExternalLayout>
-          <AppLayout>
-            {location.hash.startsWith("#/login") ? (
-              <Login />
-            ) : location.hash.startsWith("#/desktop-list") ? (
-              <DesktopList />
-            ) : null}
-          </AppLayout>
-        </ExternalLayout>
-      </AuthLayout>
+      <ExternalLayout>
+        <AppLayout>
+          {location.hash.startsWith("#/login") ? (
+            <Login />
+          ) : location.hash.startsWith("#/desktop-list") ? (
+            <DesktopList />
+          ) : null}
+        </AppLayout>
+      </ExternalLayout>
     </AntLayout>
   );
 };
