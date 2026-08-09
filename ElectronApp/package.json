@@ -1,6 +1,6 @@
 {
   "name": "CTYunPCKeepAliveElectron",
-  "version": "2.0.0",
+  "version": "1.3.0",
   "description": "天翼云电脑续命工具",
   "license": "MIT",
   "main": "./out/main/index.js",
