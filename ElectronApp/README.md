@@ -56,7 +56,7 @@ npm run build:win
 ```
 
 - `npm run build`：执行 TypeScript 检查并生成 Electron 主进程与 preload 产物。
-- `npm run build:win`：在构建完成后调用 electron-builder 生成 Windows 安装包和便携版。
+- `npm run build:win`：在构建完成后调用 electron-builder 生成 Windows 安装包和便携版（CI 中额外附加 `-- --x64` 显式指定 x64 架构）。
 - `npm run build:unpack`：生成未打包目录，适合本地检查构建内容。
 
 构建产物默认输出到 `dist/`，中间产物输出到 `out/`。这些目录不应提交到仓库。
@@ -77,7 +77,7 @@ ElectronApp/
 ## 维护说明
 
 - Windows 图标由 `resources/icon.ico` 提供，并在 `electron-builder.yml` 中显式配置。
-- 当前没有自动更新逻辑；版本发布和更新地址由外部发布流程决定。
+- 版本发布由仓库根目录的 GitHub Actions 自动化完成：推送 `vX.Y.Z` 标签后，CI 会先更新 `dist` 分支的用户脚本，再构建 Windows x64 产物（安装包 + 便携版）并上传到 GitHub Release。
 - 如果远程脚本地址、仓库名或发布分支变化，需要同步修改 `src/preload/index.ts`。
 
 ## 免责声明

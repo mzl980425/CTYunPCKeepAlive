@@ -132,12 +132,19 @@ package.json 中的 version 会写入用户脚本版本信息；pageUrl 用于�
 
 ## 发布
 
-1. 更新 UserScript/package.json 中的 version。
-2. 执行 npm run build。
-3. 检查 dist/user-script.user.js 的元数据和功能。
-4. 将构建产物发布到仓库 dist 分支。
-5. 确认 GitHub Pages 安装地址可访问。
-6. 再构建或发布 Electron 客户端，确保其加载到最新脚本。
+发布由仓库根目录的 GitHub Actions workflow 自动化完成：
+
+1. 更新 `UserScript/package.json` 中的 version（日期格式，如 `2026.08.09`）。
+2. 按 Electron 版本打 tag（如 `v1.3.1`）并推送：
+
+   ```bash
+   git tag v1.3.1 && git push origin v1.3.1
+   ```
+
+3. Workflow 自动执行：构建用户脚本 → 发布到 `dist` 分支（GitHub Pages 安装地址与 Electron 加载地址同时生效）→ 构建 Electron Windows x64 → 创建 Release 并上传安装包与便携版。
+4. 可选：创建 `@YYYY.MM.DD` 标签的脚本快照 Release（见[根 README](../README.md) 的版本命名规则），作为本次脚本更新的说明页。
+
+脚本快照（`@YYYY.MM.DD`）每次刷新页面时自动更新，无需手动操作。
 
 ## 常见问题
 
