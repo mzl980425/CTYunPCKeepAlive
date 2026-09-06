@@ -17,6 +17,7 @@ CTYunPCKeepAlive 的核心业务模块。脚本运行在天翼云电脑网页中
 
 ## 功能
 
+- 支持手机验证码登录。
 - 读取当前账户可用的云电脑、云手机等桌面列表。
 - 按设定间隔自动执行保活，默认 19 分钟。
 - 手动立即保活。
@@ -64,7 +65,7 @@ package.json 中的 version 会写入用户脚本版本信息；pageUrl 用于�
 
 现有流程为：
 
-1. 脚本在 document-body 阶段启动。
+1. 脚本在 document-body 阶段启动，仅在进入云电脑列表页（`#/desktop-list`）后加载 SDK；登录页不加载 SDK。
 2. 从当前页面查找 src 包含 main. 的官方脚本标签。
 3. 获取对应官方 JavaScript bundle。
 4. 定点替换应用挂载逻辑，并把官方内部应用实例暴露为 window.**APP**。

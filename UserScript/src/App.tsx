@@ -14,15 +14,15 @@ const App: FC<{}> = () => {
 
   return (
     <AntLayout>
-      <ExternalLayout>
-        <AppLayout>
-          {location.hash.startsWith("#/login") ? (
-            <Login />
-          ) : location.hash.startsWith("#/desktop-list") ? (
+      <AppLayout>
+        {location.hash.startsWith("#/login") ? (
+          <Login />
+        ) : location.hash.startsWith("#/desktop-list") ? (
+          <ExternalLayout>
             <DesktopList />
-          ) : null}
-        </AppLayout>
-      </ExternalLayout>
+          </ExternalLayout>
+        ) : null}
+      </AppLayout>
     </AntLayout>
   );
 };
