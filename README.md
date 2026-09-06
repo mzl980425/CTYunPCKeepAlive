@@ -19,8 +19,8 @@
 
 > 只做保活，不做远控。连接仅在内存中短暂建立（默认约 8 秒），不会长期占用你的云电脑。
 
-<img width="245" alt="截图1" src="https://github.com/user-attachments/assets/71f5a054-fce8-4c2f-a3b1-06792b9b3b60" />
-<img width="245" alt="截图2" src="https://github.com/user-attachments/assets/61985799-5704-4ac4-a743-5aa7c3811b5d" />
+<img width="245" alt="截图1" src="https://github.com/user-attachments/assets/95f9db70-32ee-40e2-985d-cdc58a05ced2" />
+<img width="245" alt="截图2" src="https://github.com/user-attachments/assets/3a4adf1f-368a-469c-a7d2-00525c8e5c36" />
 
 ## 安装
 
